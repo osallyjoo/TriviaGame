@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <title>Basic Trivia</title>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="wrapper">
+
+    <h1>Friends Trivia!</h1>
+
+    <button id="start">Start</button><br>
+
+    <form id="quiz">
+        <h3>Time Remaining: <span id="count"></span> seconds</h3>
+      <ul>
+        <li>
+          <h3>How many years apart are Monica and Richard?</h3>
+            <input type="radio" name="q0" value="A">7
+            <input type="radio" name="q0" value="B">14
+            <input type="radio" name="q0" value="C">21
+            <input type="radio" name="q0" value="D">28
+        </li><br>
+        <li>
+          <h3>Why did Chandler break up with his first girlfriend?</h3>
+            <input type="radio" name="q1" value="A">He didn't love her anymore
+            <input type="radio" name="q1" value="B">She was lesbian
+            <input type="radio" name="q1" value="C">She was fat
+            <input type="radio" name="q1" value="D">She had an obnoxious laugh
+        </li><br>
+        <li>
+          <h3>What is Frank's favorite thing to do?</h3>
+            <input type="radio" name="q2" value="A">Eat pizza
+            <input type="radio" name="q2" value="B">Spend time with Alice
+            <input type="radio" name="q2" value="C">Melt things
+            <input type="radio" name="q2" value="D">Ride his bike
+        </li><br>
+        <li>
+          <h3>What is Joey's favorite food?</h3>
+            <input type="radio" name="q3" value="A">Burgers
+            <input type="radio" name="q3" value="B">Cake
+            <input type="radio" name="q3" value="C">Sandwiches
+            <input type="radio" name="q3" value="D">Hot dogs
+        </li><br>
+        <li>
+          <h3>Which soap opera does Joey act in?</h3>
+            <input type="radio" name="q4" value="A">General Hospital
+            <input type="radio" name="q4" value="B">Passions
+            <input type="radio" name="q4" value="C">Days of Our Lives
+            <input type="radio" name="q4" value="D">All My Children
+        </li><br>
+        <li>
+          <h3>What is the name of Phoebe's most-played song?</h3>
+            <input type="radio" name="q5" value="A">I'll Be There for You
+            <input type="radio" name="q5" value="B">Two of them Kissed Last Night
+            <input type="radio" name="q5" value="C">Smelly Cat
+            <input type="radio" name="q5" value="D">Fun Bobby
+        </li>
+      </ul>
+
+        <button id="done" onclick="returnScore()">Done</button>
+    </form>
+
+
+    <div id="result">
+      <h2>All Done!</h2>
+      <p>Correct Answers: <span id="correct"></span></p>
+      <p>Incorrect Answers: <span id="incorrect"></span></p>
+      <p>Unanswered: <span id="unanswered"></span></p>
+    </div>
+
+  </div>
+</div>
+    <script src="assets/javascript/app.js"></script>
+
+
+</body>
+</html>
