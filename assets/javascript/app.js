@@ -48,19 +48,19 @@ function printResult() {
     resultWrong.innerHTML=(numWrong);
 
     var resultUnanswered = document.getElementById("unanswered");
-    var unanswer = totalQuestions - numWrong - numCorrect;
-    resultUnanswered.innerHTML=(unanswer);
+    //var unanswer = totalQuestions - numWrong - numCorrect;
+    resultUnanswered.innerHTML=(unanswered);
 
 }
 
 $(document).ready(function() {
     $("form").hide();
     $("#results").hide();
-
+    var counter = 20;
     $("#start").click(function() {
         $("form").show();
         $("#start").toggle();
-        var counter = 20;
+
         setInterval(function() {
             counter--;
             if (counter >=0) {
@@ -72,10 +72,18 @@ $(document).ready(function() {
                 $("#results").show();
                 clearInterval(counter);
                 onSubmit();
-                printResult();
+                //printResult();
             }
         }, 1000)
-    })
+    });
+
+    $("#done").click(function(){
+        $("form").hide();
+        $("#results").show();
+        clearInterval(counter);
+        onSubmit();
+        //printResult();
+    });
 });
 
     // $("#done").click(function() {
