@@ -1,30 +1,61 @@
-var answers = ["C", "C", "C", "C", "C", "C"];
-var totalQuestions = answers.length;
+var numCorrect = 0;
+var numWrong = 0;
+var unanswered = 0;
+var totalQuestions = 6;
+var answers = ["c", "c", "c", "c", "c", "c"];
+
+function onSubmit() {
 
 
-function getCheckedValue(radioName) {
-    var radios = document.getElementByName(radioName);
-    for (var y=0; y<radios.length; y++)
-        if (radios[y].checked)
-            return radios[y].value;
+    q1 = document.forms["quiz"]["q1"].value;
+    q2 = document.forms["quiz"]["q2"].value;
+    q3 = document.forms["quiz"]["q3"].value;
+    q4 = document.forms["quiz"]["q4"].value;
+    q5 = document.forms["quiz"]["q5"].value;
+    q6 = document.forms["quiz"]["q6"].value;
+
+    for (var i = 1; i <= totalQuestions; i++) {
+        if (("q" + i) != answers[i - 1] && ("q" + i) != "") {
+            numWrong++;
+            console.log('numWrong', numWrong);
+        }
+    }
+
+    for (var i = 1; i <= totalQuestions; i++) {
+        if (("q" + i) == answers[i - 1]) {
+            numCorrect++;
+            console.log('numCorrect', numCorrect);
+        }
+    }
+
+    for (var i = 1; i <= totalQuestions; i++) {
+        if (("q" + i) == "") {
+            unanswered++;
+            console.log('unanswered', unanswered);
+        }
+    }
+    printResult();
+
+    return false;
+
 }
 
-function getScore() {
-    var score = 0;
-    for (var i = 0; i < totalQuestions; i++)
-        if (getCheckedValue("question"+i) === answers[i])
-            score +=1;
-        return score;
-}
+function printResult() {
+    var resultCorrect = document.getElementById("correct");
+    resultCorrect.innerHTML=(numCorrect);
 
-function returnScore() {
-    alert("Your score is "+ getScore() + "/" + totalQuestions);
-}
+    var resultWrong = document.getElementById("incorrect");
+    resultWrong.innerHTML=(numWrong);
 
+    var resultUnanswered = document.getElementById("unanswered");
+    var unanswer = totalQuestions - numWrong - numCorrect;
+    resultUnanswered.innerHTML=(unanswer);
+
+}
 
 $(document).ready(function() {
     $("form").hide();
-    $("#result").hide();
+    $("#results").hide();
 
     $("#start").click(function() {
         $("form").show();
@@ -38,129 +69,34 @@ $(document).ready(function() {
             }
             if (counter === 0) {
                 $("form").hide();
-                $("#result").show();
+                $("#results").show();
                 clearInterval(counter);
+                onSubmit();
+                printResult();
             }
         }, 1000)
-    });
-
-    $("#done").click(function() {
-        $("form").hide();
-        $("#result").show();
-    });
-
-
+    })
 });
 
-
-
-// var game = {
-//     correct: null,
-//     incorrect: null,
-//     unanswered: null,
-//     totalQuestions: questions.length,
-//     totalSeconds: 20,
-
-
-//     timer: function() {
-//         document.getElementById("timer").innerHTML = "Time Remaining: " + totalSeconds;
-//         if (totalSeconds <=0) {
-//             setTimeout()
-//         } else {
-//             totalSeconds = totalSeconds - 1;
-//             setTimeout(timer, 1000);
-//         }
-//     }
-
-//     // this function passes another function,
-//     // Allows to trigger a certain action after a given moment
-//     // setTimeout(loadNextQuestion, 1000 * 20);
-
-
-//     setTimeout(timer, 1000 * 20);
-
-//     start: function() {
-
-//     },
-
-//     timeUp: function() {
-
-//     }
-
-//     }
-// setTimeout(tenSeconds, 1000 * 10);
-// clearTimeout();
-// clearInterval();
-// }
-
-// function loadQuestion(questionIndex) {
-//     var q = questions[questionIndex];
-//     question
-// }
-
-// function loadNextQuestion() {
-//     var selectedOption = document.querySelector("input[type=radio]:checked");
-//     if(!selectedOption) {
-//         alert("Please select your answer!");
-//         return;
-//     }
-//     var answer = selectedOption.value;
-//     if(questions[currentQuestion].answer === answer) {
-//         correct++;
-//     }
-//     if (currentQuestion === totalQuestions){
-//         // display score
-//     }
-// }
+    // $("#done").click(function() {
+    //     $("form").hide();
+    //     $("#result").show();
+    // });
 
 
 
+// Start button
+    //Time ticks down
+    //Question is shown
 
-// function tenSeconds() {
-//     $("#time-left").append("<h2>About 10 seconds left!</h2>");
-// }
+// Click answer - tells u if correct or incorrect
+    // If wrong, displays "nope!", and "Correct answer was: " + image.
+        // No user input, automatically moves onto the next question & Time remaining resets
+    // If time remaining reaches 0, displays "Out of Time!" and "correct answer was: " + image
+        // Then moves to next question
+    //
 
+//At the end of the game: Shows: A) Timer is no longer ticking down, b) "All done, here's how you did!"- Coorect Answers:, Incorrect Answers: and Unanswered: C) Start over?
+//When you click Start over, resets the game (not reloads the page)... goes to question one again
 
-// $(function(){
-//     $("#s_timer").countdowntimer({
-//         seconds : 25‚
-//                 size : "lg"
-//     });
-// });
-
-
-
-// // Keeps user on the page without having to reload
-// $("#quiz-form").on("submit", function(event) {
-//     event.preventDefault();
-// }
-
-// // Check the answer
-//     var $answer = $("quiz-answer");
-//     var answer = $answer.val();// find that first element and look at the value
-//     console.log(answer);
-
-// //display message to user to see if they got it
-//     if (answer === "") {
-//         $("#result").text("Correct!")
-//     } else {
-
-//     }
-
-
-// // Start button
-//     //Time ticks down
-//     //Question is shown
-
-// // Click answer - tells u if correct or incorrect
-//     // If wrong, displays "nope!", and "Correct answer was: " + image.
-//         // No user input, automatically moves onto the next question & Time remaining resets
-//     // If time remaining reaches 0, displays "Out of Time!" and "correct answer was: " + image
-//         // Then moves to next question
-//     //
-
-// // At the end of the game: Shows: A) Timer is no longer ticking down, b) "All done, here's how you did!"- Coorect Answers:, Incorrect Answers: and Unanswered: C) Start over?
-//     // When you click Start over, resets the game (not reloads the page)... goes to question one again
-
-
-// // Moves onto the next question when: a) time hits zero or b) user clicks an answer choice
+// Moves onto the next question when: a) time hits zero or b) user clicks an answer choice

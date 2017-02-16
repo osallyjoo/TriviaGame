@@ -1,23 +1,22 @@
-
 .container {
     background-image: url("../images/friends.jpg");
     padding: 200px;
+    background-size: 100%;
 }
 
 .wrapper {
     text-align: center;
     background-color: yellow;
-    padding: 10px;
+    padding: 5px;
 }
 
 ul {
     list-style-type: none;
 }
 
-
 h1 {
-    font-size: 50px;
     color: blue;
+    font-size: 50px;
     font-weight: bold;
 }
 button {
